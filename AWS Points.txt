@@ -1,0 +1,48 @@
+AWS Points:
+
+#############################################################################
+IAM:
+1.A Policy can not be attached to a AWS resource directly, It can be attached to a User or group.
+2. A Role can be attached to a EC2 instance through a Policy attached on it.
+3. By default explicit Deny overrides to explicit allow rule.
+#############################################################################
+VPC: (Virtual Private Cloud)
+AWS VPC enables you to launch AWS resources into a visual network that you’ve defined. This virtual network closely resembles a traditional network that you’d operate in your own datacenter, with the benefits of using the scalable infrastructure
+Of AWS.
+A VPC is designed to resemble:
+ - Private on-premise data centers
+ - Private corporate network
+A VPC is housed within a chosen AWS region and spans multiple AZ within a region.
+This allows you to provision redundant resource in separate AZ”s while having them accessible on the same network(foundation of high availability and fault tolerant achitecture).
+
+VPC Benefits:
+1. Ability to launch instances into a subnet.
+2. Ability to define custom CIDR(IP address range) inside each subnet.
+3. Ability to config routes between subnets via route tables.
+4. Ability to config an internet gateway to provide a route to the internet for resources launched inside the VPC.
+5. Ability to extend your on-premise network into the cloud with VPN/VPG and an IPsec VPN tunnel.
+6. Layered Security:
+ - Instance level security groups.(firewall on the instance level)
+ - Subnet level Network ACL.(firewall on the subnet level)
+
+Default VPC:
+In the default VPC, all subnets have a route to the internet via route table and an attached IGW.
+Each instance launched in the default VPC (by default) has a private and public IP address (defined on the subnet settings).
+
+VPC limits:
+Each VPC has one IGW at a time.
+50 customer gateways per region
+50 VPN connections per region
+200 routing tables per region / 50 entries per route table
+5 EIP(elastic IP) 
+500 SG per VPC
+50 rules per SG
+5 SG per network interface.
+
+AWS —> VPC —> ACL —> Subnet —> Security Group
+
+#############################################################################
+
+AWS CLI Commands :
+aws ec2 start-instances --instance-ids i-00493566a4d5b9461
+aws ec2 stop-instances --instance-ids i-00493566a4d5b9461
